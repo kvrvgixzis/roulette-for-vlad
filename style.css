@@ -122,6 +122,14 @@ body {
   top: calc(50% - (1350px / 2));
 }
 
+.lights {
+  position: absolute;
+  z-index: 11;
+
+  right: -496px;
+  top: calc(50% - (1350px / 2));
+}
+
 .roulette {
   position: absolute;
   z-index: 9;
@@ -167,6 +175,10 @@ body {
   100% {
     transform: rotate(360deg);
   }
+}
+
+circle {
+  animation: 1s shining;
 }
 
 @keyframes shining {

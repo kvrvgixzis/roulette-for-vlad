@@ -68,4 +68,16 @@ const rotateRoulette = () => {
   }, 5000);
 };
 
+// const blinkingLights = () => {
+//   const lights = document.querySelector('.lights');
+//   console.log('lights: ', lights);
+//   console.log('lights.getSVGDocument(): ', lights.getSVGDocument());
+//   const lightsSvg = lights.getSVGDocument();
+//   console.log('lightsSvg: ', lightsSvg);
+//   const circles = lightsSvg.querySelectorAll('circle');
+//   console.log('circles: ', circles);
+// };
+
+// blinkingLights();
+
 btn.addEventListener('click', rotateRoulette);
