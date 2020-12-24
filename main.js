@@ -1,6 +1,7 @@
 const btn = document.querySelector('.refresh-btn');
 const waitBtn = document.querySelector('.wait-btn');
 const roulette = document.querySelector('.roulette');
+const messages = document.querySelectorAll('.msg');
 const gap = 1080;
 let angle = 0;
 let isButtonEnabled = true;
@@ -42,41 +43,26 @@ const items = {
 
 const getRandomItemIndex = () => {
   const keys = Object.keys(items);
-  const key = keys[(keys.length * Math.random()) << 0];
-  return key;
+  return keys[(keys.length * Math.random()) << 0];
 };
 
-const disableButton = () => {
-  isButtonEnabled = false;
-  btn.style.display = 'none';
-  waitBtn.style.display = 'flex';
+const setIsButtonEnable = (enable) => {
+  isButtonEnabled = enable;
+  btn.style.display = enable ? 'flex' : 'none';
+  waitBtn.style.display = enable ? 'none' : 'flex';
 };
 
-const enableButton = () => {
-  isButtonEnabled = true;
-  btn.style.display = 'flex';
-  waitBtn.style.display = 'none';
-};
-
-const hideNodes = () => {
-  Object.keys(items).forEach((key) => {
-    items[key].node.classList.remove('show');
-  });
-};
+const hideNodes = () => messages.forEach((el) => el.classList.remove('show'));
 
 const rotateRoulette = () => {
-  if (!isButtonEnabled) return;
   hideNodes();
-  disableButton();
-
+  setIsButtonEnable(false);
   const randomItemIndex = getRandomItemIndex();
   const randomItem = items[randomItemIndex];
-
   angle += gap;
   roulette.style.transform = `rotate(-${randomItem.deg + angle}deg)`;
-
   setTimeout(() => {
-    enableButton();
+    setIsButtonEnable(true);
     randomItem.node.classList.add('show');
     delete items[randomItemIndex];
   }, 5000);
