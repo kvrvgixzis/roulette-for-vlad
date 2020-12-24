@@ -1,5 +1,3 @@
-console.log('Hello world!');
-
 const btn = document.querySelector('.refresh-btn');
 const waitBtn = document.querySelector('.wait-btn');
 const roulette = document.querySelector('.roulette');
@@ -12,7 +10,7 @@ const items = {
   tapki: 180,
   vilka: 225,
   tabachok: 270,
-  bitocheck: 315,
+  bitochek: 315,
 };
 
 const messages = {
@@ -23,7 +21,7 @@ const messages = {
   tapki: document.querySelector('.tapki'),
   vilka: document.querySelector('.vilka'),
   tabachok: document.querySelector('.tabachok'),
-  bitocheck: document.querySelector('.bitocheck'),
+  bitochek: document.querySelector('.bitochek'),
 };
 
 const gap = 1080;
@@ -53,8 +51,6 @@ const rotateRoulette = () => {
   const selectedItem = randomItem(items);
 
   Object.keys(messages).forEach((key) => {
-    console.log('key: ', key);
-    console.log('messages[key]: ', messages[key]);
     messages[key].classList.remove('show');
   });
 
@@ -64,20 +60,8 @@ const rotateRoulette = () => {
   setTimeout(() => {
     onButton();
     messages[selectedItem].classList.add('show');
-    console.log('messages[selectedItem]: ', messages[selectedItem]);
+    delete items[selectedItem];
   }, 5000);
 };
-
-// const blinkingLights = () => {
-//   const lights = document.querySelector('.lights');
-//   console.log('lights: ', lights);
-//   console.log('lights.getSVGDocument(): ', lights.getSVGDocument());
-//   const lightsSvg = lights.getSVGDocument();
-//   console.log('lightsSvg: ', lightsSvg);
-//   const circles = lightsSvg.querySelectorAll('circle');
-//   console.log('circles: ', circles);
-// };
-
-// blinkingLights();
 
 btn.addEventListener('click', rotateRoulette);
