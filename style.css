@@ -3,6 +3,10 @@
   padding: 0;
   margin: 0;
   border: 0;
+  outline: none;
+}
+html {
+  overflow: hidden;
 }
 
 body {
@@ -10,6 +14,7 @@ body {
   position: relative;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 
 .bg-decoration {
@@ -31,7 +36,6 @@ body {
 }
 
 .wrapper {
-  position: relative;
   overflow: hidden;
   padding: 56px 72px;
   width: 100vw;
@@ -43,7 +47,8 @@ body {
   align-items: flex-start;
 }
 
-.refresh-btn {
+.refresh-btn,
+.wait-btn {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -67,6 +72,35 @@ body {
   font-size: 32px;
   line-height: 39px;
   color: rgba(243, 239, 245, 1);
+
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.refresh-btn {
+  animation: 1s linear 1s infinite alternate shining;
+}
+
+.wait-btn {
+  display: none;
+  cursor: default;
+  background: linear-gradient(180deg, #432395 0%, #23134f 100%);
+  box-shadow: 0px 32px 70px rgba(67, 35, 149, 0.5);
+}
+
+.refresh-btn:hover img {
+  animation: 1s rotate-icon;
+}
+
+.refresh-btn:hover,
+.wait-btn:hover {
+  bottom: 100px;
+  left: 184px;
+
+  width: 560px;
+  height: 104px;
+
+  padding: 36px;
 }
 
 .vlad-photo {
@@ -79,6 +113,33 @@ body {
   position: absolute;
   left: 44px;
   bottom: 147px;
+}
+
+.roulette-body {
+  position: absolute;
+  z-index: 10;
+  right: -498px;
+  top: calc(50% - (1350px / 2));
+}
+
+.roulette {
+  position: absolute;
+  z-index: 9;
+  right: -500px;
+  top: calc(50% - (1350px / 2) - 1px);
+  transition: all 5s ease-in-out;
+}
+
+.msg {
+  display: none;
+  position: absolute;
+  left: 44px;
+  top: 184px;
+}
+
+.msg.show {
+  display: block;
+  animation: 0.5s show;
 }
 
 @keyframes bg-1-moving {
@@ -96,5 +157,34 @@ body {
   }
   100% {
     transform: translateY(-100px);
+  }
+}
+
+@keyframes rotate-icon {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shining {
+  0% {
+    box-shadow: 0px 12px 40px rgba(4, 220, 73, 0.5);
+  }
+  100% {
+    box-shadow: 0px 52px 90px rgba(4, 220, 73, 0.5);
+  }
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
